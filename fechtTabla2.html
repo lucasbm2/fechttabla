@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="contenedorTabla"></div>
+    <button onclick="cargarTabla()">Cargar Tabla</button>
+    <script>
+        function cargarTabla() {
+            fetch('ordenador2.json')
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar el archivo JSON.');
+                    }
+                    return response.json();
+                })
+                .then(function (clientes) {
+                    let tabla = document.createElement("table");
+                    for (const cliente of clientes) {
+                        let fila = document.createElement("tr");
+                        let celdaMarca = document.createElement("td");
+                        celdaMarca.innerHTML = cliente.marca;
+                        let celdaModelo = document.createElement("td");
+                        celdaModelo.innerHTML = cliente.modelo;
+                        let celdaColor = document.createElement("td");
+                        celdaColor.innerHTML = cliente.color;
+                        let celdaComentario = document.createElement("td");
+                        
+                        let comentarios = "";
+                        for (const comentario of cliente.comentarios) {
+                            comentarios += comentario + "<br>";
+                        }
+                        celdaComentario.innerHTML = comentarios;
+
+                        fila.appendChild(celdaMarca);
+                        fila.appendChild(celdaModelo);
+                        fila.appendChild(celdaColor);
+                        fila.appendChild(celdaComentario);
+
+                        tabla.appendChild(fila);
+                    }
+
+                    let contenedorTabla = document.getElementById("contenedorTabla");
+                    contenedorTabla.innerHTML = ""; 
+                    contenedorTabla.appendChild(tabla);
+                })
+                .catch(function (error) {
+                    console.error('Se produjo un error al cargar el archivo JSON:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>

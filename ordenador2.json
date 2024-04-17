@@ -1,0 +1,30 @@
+[
+    {
+        "marca": "HP",
+        "modelo": "50U7",
+        "color": "blanco",
+        "comentarios": [
+            "Estilo moderno.",
+            "Diseño elegante"
+        ]
+    },
+    {
+        "marca": "Dell",
+        "modelo": "Inspiron 15",
+        "color": "negro",
+        "comentarios": [
+            "Rendimiento sólido",
+            "Portátil"
+        ]
+    },
+    {
+        "marca": "Asus",
+        "modelo": "ZenBook Pro Duo",
+        "color": "gris",
+        "comentarios": [
+            "Innovación en gris.",
+            "Potencia ",
+            "Estilo "
+        ]
+    }
+]
